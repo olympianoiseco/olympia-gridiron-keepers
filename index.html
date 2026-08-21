@@ -105,8 +105,47 @@ tr.inel td{opacity:.5}
 .why{display:block;font-size:11px;color:var(--muted);font-style:italic}
 footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   color:var(--muted);font-size:12.5px;max-width:78ch;display:flex;flex-direction:column;gap:8px}
-@media (max-width:640px){.wrap{padding:0 13px 56px}.rc{border-right:0}
-  .rh,.example,.edge,.howto{padding-left:17px;padding-right:17px}}
+@media (max-width:640px){
+  .wrap{padding:0 13px 56px;gap:16px}
+  header.mast{padding:34px 0 8px;gap:11px}
+  .rc{border-right:0}
+  .rh{padding:20px 17px 16px}
+  .example,.edge,.howto{padding-left:17px;padding-right:17px}
+
+  /* legend stacks so each term reads on one line */
+  .key{flex-direction:column;gap:7px;padding:12px 0}
+
+  /* escalator table: let long headers wrap instead of forcing a scroll */
+  .extable th,.extable td{white-space:normal;padding:8px 10px}
+  .extable th{font-size:9.5px;letter-spacing:.06em}
+
+  /* roster tables become stacked rows — no sideways scrolling */
+  .team .tscroll{overflow-x:visible}
+  .team table,.team tbody,.team tr,.team td{display:block;width:auto}
+  .team thead{display:none}
+  .team tbody tr{
+    display:grid;
+    grid-template-columns:auto auto 1fr auto;
+    grid-template-areas:"name name name cost" "pos pro acq round";
+    column-gap:9px;row-gap:2px;
+    padding:11px 14px;
+    align-items:baseline;
+    border-bottom:1px solid var(--line);
+  }
+  .team tbody tr:last-child{border-bottom:0}
+  .team tbody td{border:0;padding:0;white-space:nowrap;min-width:0}
+  .team .pn{grid-area:name;white-space:normal;font-size:15px;font-weight:600;min-width:0}
+  .team .cost{grid-area:cost;text-align:right;font-size:14px;justify-self:end}
+  .team .cost.none{font-size:11px}
+  .team .pos{grid-area:pos}
+  .team .pro{grid-area:pro}
+  .team .acq{grid-area:acq;font-size:11px}
+  .team .dp{grid-area:round;text-align:right;font-size:11px;font-weight:400;
+    color:var(--muted);justify-self:end}
+  .team .undr{font-size:10px}
+  .team .why{white-space:normal}
+  .th{padding:12px 14px}
+}
 </style>
 <div class="wrap">
 <header class="mast">
