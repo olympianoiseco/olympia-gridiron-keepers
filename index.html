@@ -35,10 +35,12 @@ body{margin:0;background:var(--ground);color:var(--ink);
   font-family:"Public Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
 .wrap{max-width:1000px;margin:0 auto;padding:0 22px 80px;display:flex;flex-direction:column;gap:20px}
 h1,h2{font-family:Bitter,Georgia,serif;margin:0;text-wrap:balance}
-header.mast{padding:56px 0 12px;display:flex;flex-direction:column;gap:13px}
+header.mast{padding:56px 0 12px;display:flex;flex-direction:column;gap:9px}
 .rule{height:3px;background:var(--accent)}
 .eyebrow{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.league{font-family:Bitter,Georgia,serif;font-size:clamp(17px,2.6vw,21px);font-weight:600;
+  color:var(--accent);letter-spacing:-.005em;line-height:1.2}
 .mast h1{font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
 .mast p{margin:0;font-size:15.5px;color:var(--ink-2);max-width:72ch}
 .rules{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);
@@ -115,7 +117,7 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   color:var(--muted);font-size:12.5px;max-width:78ch;display:flex;flex-direction:column;gap:8px}
 @media (max-width:640px){
   .wrap{padding:0 13px 56px;gap:16px}
-  header.mast{padding:34px 0 8px;gap:11px}
+  header.mast{padding:30px 0 8px;gap:7px}
   /* rule cards stack one per row — a 2-up grid of prose reads badly on a phone */
   .rgrid{grid-template-columns:1fr}
   .rc{border-right:0;padding:16px 17px}
@@ -163,6 +165,7 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 <div class="wrap">
 <header class="mast">
   <div class="rule"></div>
+  <div class="league">Thee Olympia Gridiron Co.</div>
   <div class="eyebrow">2025 final rosters · ESPN league 1140244</div>
   <h1>Keeper Rules and Rosters</h1>
   <p>Keeper player cost for 2026 season.</p>
