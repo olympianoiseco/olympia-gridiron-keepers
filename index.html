@@ -108,7 +108,10 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 @media (max-width:640px){
   .wrap{padding:0 13px 56px;gap:16px}
   header.mast{padding:34px 0 8px;gap:11px}
-  .rc{border-right:0}
+  /* rule cards stack one per row — a 2-up grid of prose reads badly on a phone */
+  .rgrid{grid-template-columns:1fr}
+  .rc{border-right:0;padding:16px 17px}
+  .rc:last-child{border-bottom:0}
   .rh{padding:20px 17px 16px}
   .example,.edge,.howto{padding-left:17px;padding-right:17px}
 
