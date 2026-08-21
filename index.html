@@ -117,6 +117,19 @@ tr.inel td{opacity:.5}
 footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   color:var(--muted);font-size:12.5px;max-width:78ch;display:flex;flex-direction:column;gap:8px}
 
+/* roster chips */
+.roster{border-top-color:var(--accent)}
+.pgrid{display:flex;flex-wrap:wrap;gap:0}
+.pchip{flex:1 0 auto;min-width:74px;padding:13px 6px;text-align:center;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pchip b{display:block;font-family:"Spline Sans Mono",monospace;font-size:22px;font-weight:600;
+  color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums}
+.pchip span{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted)}
+.pchip.bench b{color:var(--muted)}
+.pchip.total{background:var(--sunk)}
+.pchip.total b{color:var(--ink)}
+
 /* scoring */
 .scoring{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--brass);
   box-shadow:var(--shadow);display:flex;flex-direction:column}
@@ -199,6 +212,11 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 <section class="scoring">
   <header class="sh"><h2>2026 scoring settings</h2><p>Half PPR with a point for every rushing and receiving first down — that last part is new, and it rewards volume over big plays. Still being tweaked; this table reads live from the league.</p></header>
   <div class="sgrid"><div class="sc"><h4>Passing</h4><table><tbody><tr><td class="sl">Pass yards</td><td class="sv">+0.04</td></tr><tr><td class="sl">Pass TD</td><td class="sv">+4</td></tr><tr><td class="sl">Interception</td><td class="sv">-2</td></tr><tr><td class="sl">2-pt pass</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Rushing</h4><table><tbody><tr><td class="sl">Rush yards</td><td class="sv">+0.1</td></tr><tr><td class="sl">Rush TD</td><td class="sv">+6</td></tr><tr><td class="sl">Rush first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr><td class="sl">2-pt rush</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Receiving</h4><table><tbody><tr><td class="sl">Reception</td><td class="sv">+0.5</td></tr><tr><td class="sl">Rec yards</td><td class="sv">+0.1</td></tr><tr><td class="sl">Rec TD</td><td class="sv">+6</td></tr><tr><td class="sl">Rec first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr><td class="sl">2-pt rec</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Fumbles</h4><table><tbody><tr><td class="sl">Fumble <span class="tag">new</span></td><td class="sv">-1</td></tr><tr><td class="sl">Fumble lost</td><td class="sv">-1</td></tr><tr><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr><tr><td class="sl">Fumble rec TD</td><td class="sv">+6</td></tr></tbody></table></div><div class="sc"><h4>Kicking</h4><table><tbody><tr><td class="sl">Extra point</td><td class="sv">+1</td></tr><tr><td class="sl">FG 0-19</td><td class="sv">+3</td></tr><tr><td class="sl">FG 20-29</td><td class="sv">+3</td></tr><tr><td class="sl">FG 30-39</td><td class="sv">+3</td></tr><tr><td class="sl">FG 40-49</td><td class="sv">+4</td></tr><tr><td class="sl">FG 50-59</td><td class="sv">+5</td></tr><tr><td class="sl">FG 60+</td><td class="sv">+6</td></tr><tr><td class="sl">Missed FG</td><td class="sv">-1</td></tr></tbody></table></div><div class="sc"><h4>Defense</h4><table><tbody><tr><td class="sl">Sack</td><td class="sv">+1</td></tr><tr><td class="sl">Interception</td><td class="sv">+2</td></tr><tr><td class="sl">Forced fumble</td><td class="sv">+1</td></tr><tr><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr><tr><td class="sl">Defensive TD</td><td class="sv">+6</td></tr><tr><td class="sl">Special teams TD</td><td class="sv">+6</td></tr><tr><td class="sl">Blocked kick</td><td class="sv">+1</td></tr><tr><td class="sl">3-and-out</td><td class="sv">+1</td></tr><tr><td class="sl">4th down stop</td><td class="sv">+1</td></tr><tr><td class="sl">2-pt return</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Points allowed</h4><table><tbody><tr><td class="sl">0</td><td class="sv">+5</td></tr><tr><td class="sl">1-6</td><td class="sv">+4</td></tr><tr><td class="sl">7-13</td><td class="sv">+3</td></tr><tr><td class="sl">14-20</td><td class="sv">+1</td></tr><tr><td class="sl">21-27</td><td class="sv">+0</td></tr><tr><td class="sl">28-34</td><td class="sv">-1</td></tr><tr><td class="sl">35+</td><td class="sv">-3</td></tr></tbody></table></div><div class="sc"><h4>Yards allowed</h4><table><tbody><tr><td class="sl">0-99</td><td class="sv">+5</td></tr><tr><td class="sl">100-199</td><td class="sv">+3</td></tr><tr><td class="sl">200-299</td><td class="sv">+2</td></tr><tr><td class="sl">300-349</td><td class="sv">+0</td></tr><tr><td class="sl">350-399</td><td class="sv">-1</td></tr><tr><td class="sl">400-449</td><td class="sv">-3</td></tr><tr><td class="sl">450-499</td><td class="sv">-5</td></tr><tr><td class="sl">500-549</td><td class="sv">-6</td></tr><tr><td class="sl">550+</td><td class="sv">-7</td></tr></tbody></table></div></div>
+</section>
+
+<section class="scoring roster">
+  <header class="sh"><h2>Starting lineup</h2><p>Ten starters and five bench spots, plus one IR. FLEX takes a RB, WR, or TE. Note we now run two FLEX where ESPN ran one — ESPN also had punter and head-coach slots, which Sleeper has no equivalent for, so those two became a second FLEX.</p></header>
+  <div class="pgrid"><div class="pchip"><b>1</b><span>QB</span></div><div class="pchip"><b>2</b><span>RB</span></div><div class="pchip"><b>2</b><span>WR</span></div><div class="pchip"><b>1</b><span>TE</span></div><div class="pchip"><b>2</b><span>FLEX</span></div><div class="pchip"><b>1</b><span>K</span></div><div class="pchip"><b>1</b><span>D/ST</span></div><div class="pchip bench"><b>5</b><span>Bench</span></div><div class="pchip bench"><b>1</b><span>IR</span></div><div class="pchip total"><b>15</b><span>roster</span></div></div>
 </section>
 
 <h2 class="sectitle">Keeper Rules and Rosters</h2>
