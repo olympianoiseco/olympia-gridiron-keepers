@@ -119,16 +119,17 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 
 /* roster chips */
 .roster{border-top-color:var(--accent)}
-.pgrid{display:flex;flex-wrap:wrap;gap:0}
-.pchip{flex:1 0 auto;min-width:74px;padding:13px 6px;text-align:center;
-  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.pchip b{display:block;font-family:"Spline Sans Mono",monospace;font-size:22px;font-weight:600;
-  color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums}
-.pchip span{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--muted)}
-.pchip.bench b{color:var(--muted)}
-.pchip.total{background:var(--sunk)}
-.pchip.total b{color:var(--ink)}
+.pgrid{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line)}
+.pchip{flex:0 1 auto;padding:12px 16px;display:flex;align-items:baseline;gap:5px;
+  border-right:1px solid var(--line)}
+.pchip b{font-family:Bitter,Georgia,serif;font-size:17px;font-weight:600;color:var(--ink);
+  line-height:1.1}
+.pchip .mult{font-family:"Spline Sans Mono",monospace;font-size:12px;font-weight:600;
+  color:var(--accent);font-variant-numeric:tabular-nums}
+.pchip.bench b{color:var(--muted);font-weight:400}
+.pchip.bench .mult{color:var(--muted)}
+.psum{margin:0;padding:11px 20px;font-family:"Spline Sans Mono",monospace;font-size:11.5px;
+  letter-spacing:.04em;color:var(--muted)}
 
 /* scoring */
 .scoring{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--brass);
@@ -150,6 +151,8 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   padding:0 4px;margin-left:6px;vertical-align:1px}
 @media (max-width:640px){
   .sectitle{margin:12px 0 -8px;padding-top:14px}
+  .pchip{padding:10px 13px}
+  .psum{padding:10px 15px}
   .sh{padding:18px 17px 14px}
   .sgrid{grid-template-columns:1fr 1fr}
   .sc{padding:12px 14px 10px}
@@ -216,7 +219,7 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 
 <section class="scoring roster">
   <header class="sh"><h2>Starting lineup</h2><p>Nine starters and six bench spots, plus one IR. FLEX takes a RB, WR, or TE. Same starting lineup as we ran on ESPN — the punter and head-coach slots have no Sleeper equivalent, so those became bench spots instead.</p></header>
-  <div class="pgrid"><div class="pchip"><b>1</b><span>QB</span></div><div class="pchip"><b>2</b><span>RB</span></div><div class="pchip"><b>2</b><span>WR</span></div><div class="pchip"><b>1</b><span>TE</span></div><div class="pchip"><b>1</b><span>FLEX</span></div><div class="pchip"><b>1</b><span>K</span></div><div class="pchip"><b>1</b><span>D/ST</span></div><div class="pchip bench"><b>6</b><span>Bench</span></div><div class="pchip bench"><b>1</b><span>IR</span></div><div class="pchip total"><b>15</b><span>roster</span></div></div>
+  <div class="pgrid"><div class="pchip "><b>QB</b></div><div class="pchip "><b>RB</b><span class="mult">&times;2</span></div><div class="pchip "><b>WR</b><span class="mult">&times;2</span></div><div class="pchip "><b>TE</b></div><div class="pchip "><b>FLEX</b></div><div class="pchip "><b>K</b></div><div class="pchip "><b>D/ST</b></div><div class="pchip bench"><b>Bench</b><span class="mult">&times;6</span></div><div class="pchip bench"><b>IR</b></div></div><p class="psum">9 starters &middot; 6 bench &middot; 1 IR &middot; 15 roster spots in all</p>
 </section>
 
 <h2 class="sectitle">Keeper Rules and Rosters</h2>
