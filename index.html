@@ -39,8 +39,9 @@ header.mast{padding:56px 0 12px;display:flex;flex-direction:column;gap:9px}
 .rule{height:3px;background:var(--accent)}
 .eyebrow{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.league{font-family:Bitter,Georgia,serif;font-size:clamp(17px,2.6vw,21px);font-weight:600;
-  color:var(--accent);letter-spacing:-.005em;line-height:1.2}
+.sectitle{font-family:Bitter,Georgia,serif;font-size:clamp(21px,3.2vw,28px);font-weight:800;
+  letter-spacing:-.018em;margin:18px 0 -8px;padding-top:18px;
+  border-top:3px solid var(--accent);text-wrap:balance}
 .mast h1{font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
 .mast p{margin:0;font-size:15.5px;color:var(--ink-2);max-width:72ch}
 .rules{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);
@@ -135,6 +136,7 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   text-transform:uppercase;color:var(--brass);border:1px solid var(--brass);
   padding:0 4px;margin-left:6px;vertical-align:1px}
 @media (max-width:640px){
+  .sectitle{margin:12px 0 -8px;padding-top:14px}
   .sh{padding:18px 17px 14px}
   .sgrid{grid-template-columns:1fr 1fr}
   .sc{padding:12px 14px 10px}
@@ -189,9 +191,8 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 <div class="wrap">
 <header class="mast">
   <div class="rule"></div>
-  <div class="league">Thee Olympia Gridiron Co.</div>
   <div class="eyebrow">2025 final rosters · ESPN league 1140244</div>
-  <h1>Keeper Rules and Rosters</h1>
+  <h1>Thee Olympia Gridiron Co.</h1>
   <p>Keeper player cost for 2026 season.</p>
 </header>
 
@@ -200,6 +201,7 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   <div class="sgrid"><div class="sc"><h4>Passing</h4><table><tbody><tr><td class="sl">Pass yards</td><td class="sv">+0.04</td></tr><tr><td class="sl">Pass TD</td><td class="sv">+4</td></tr><tr><td class="sl">Interception</td><td class="sv">-2</td></tr><tr><td class="sl">2-pt pass</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Rushing</h4><table><tbody><tr><td class="sl">Rush yards</td><td class="sv">+0.1</td></tr><tr><td class="sl">Rush TD</td><td class="sv">+6</td></tr><tr><td class="sl">Rush first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr><td class="sl">2-pt rush</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Receiving</h4><table><tbody><tr><td class="sl">Reception</td><td class="sv">+0.5</td></tr><tr><td class="sl">Rec yards</td><td class="sv">+0.1</td></tr><tr><td class="sl">Rec TD</td><td class="sv">+6</td></tr><tr><td class="sl">Rec first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr><td class="sl">2-pt rec</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Fumbles</h4><table><tbody><tr><td class="sl">Fumble <span class="tag">new</span></td><td class="sv">-1</td></tr><tr><td class="sl">Fumble lost</td><td class="sv">-1</td></tr><tr><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr><tr><td class="sl">Fumble rec TD</td><td class="sv">+6</td></tr></tbody></table></div><div class="sc"><h4>Kicking</h4><table><tbody><tr><td class="sl">Extra point</td><td class="sv">+1</td></tr><tr><td class="sl">FG 0-19</td><td class="sv">+3</td></tr><tr><td class="sl">FG 20-29</td><td class="sv">+3</td></tr><tr><td class="sl">FG 30-39</td><td class="sv">+3</td></tr><tr><td class="sl">FG 40-49</td><td class="sv">+4</td></tr><tr><td class="sl">FG 50-59</td><td class="sv">+5</td></tr><tr><td class="sl">FG 60+</td><td class="sv">+6</td></tr><tr><td class="sl">Missed FG</td><td class="sv">-1</td></tr></tbody></table></div><div class="sc"><h4>Defense</h4><table><tbody><tr><td class="sl">Sack</td><td class="sv">+1</td></tr><tr><td class="sl">Interception</td><td class="sv">+2</td></tr><tr><td class="sl">Forced fumble</td><td class="sv">+1</td></tr><tr><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr><tr><td class="sl">Defensive TD</td><td class="sv">+6</td></tr><tr><td class="sl">Special teams TD</td><td class="sv">+6</td></tr><tr><td class="sl">Blocked kick</td><td class="sv">+1</td></tr><tr><td class="sl">3-and-out</td><td class="sv">+1</td></tr><tr><td class="sl">4th down stop</td><td class="sv">+1</td></tr><tr><td class="sl">2-pt return</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Points allowed</h4><table><tbody><tr><td class="sl">0</td><td class="sv">+10</td></tr><tr><td class="sl">1-6</td><td class="sv">+7</td></tr><tr><td class="sl">7-13</td><td class="sv">+4</td></tr><tr><td class="sl">14-20</td><td class="sv">+1</td></tr><tr><td class="sl">28-34</td><td class="sv">-1</td></tr><tr><td class="sl">35+</td><td class="sv">-4</td></tr></tbody></table></div></div>
 </section>
 
+<h2 class="sectitle">Keeper Rules and Rosters</h2>
 <section class="rules">
   <header class="rh">
     <span class="new">2026 Fantasy!</span>
