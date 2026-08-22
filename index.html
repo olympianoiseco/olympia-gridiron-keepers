@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
 <title>Olympia Gridiron Keeper Sheets</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8F%88%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +45,13 @@ header.mast{padding:56px 0 12px;display:flex;flex-direction:column;gap:9px}
   border-top:3px solid var(--accent);text-wrap:balance}
 .mast h1{font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
 .mast p{margin:0;font-size:15.5px;color:var(--ink-2);max-width:72ch}
+.join{align-self:flex-start;display:inline-flex;align-items:center;gap:9px;margin-top:4px;
+  background:var(--accent);color:var(--surface);text-decoration:none;
+  font-family:Bitter,Georgia,serif;font-size:15px;font-weight:600;
+  padding:11px 20px;border:1px solid var(--accent);transition:opacity .12s}
+.join:hover{opacity:.88}
+.join:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.join .arw{font-family:"Spline Sans Mono",monospace;font-size:15px;opacity:.85}
 .rules{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);
   box-shadow:var(--shadow);display:flex;flex-direction:column}
 .rh{padding:26px 26px 20px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:9px}
@@ -211,6 +219,7 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   <div class="eyebrow">Welcome to FF 2026!</div>
   <h1>Thee Olympia Gridiron Co.</h1>
   <p>Scoring and New Rules for 2026 Fantasy Season. This year, we are moving our league over to the “Sleeper” app. With that, we are introducing some tweaks to scoring, and importantly adding “keepers” to our league. Read below for info. Let us know if you’ve got any questions.</p>
+  <a class="join" href="https://sleeper.com/i/E8j1zY4XzKK4G" target="_blank" rel="noopener">Join the league on Sleeper<span class="arw" aria-hidden="true">&rarr;</span></a>
 </header>
 
 <section class="scoring">
