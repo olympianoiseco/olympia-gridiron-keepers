@@ -170,13 +170,15 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
 .sc h4{margin:0 0 7px;font-family:"Spline Sans Mono",monospace;font-size:10px;font-weight:600;
   letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
 .sc table{width:100%;border-collapse:collapse}
-.sc td{border:0;padding:3px 0;font-size:13px;white-space:nowrap}
-.sl{color:var(--ink-2)}
+.sc td{border:0;padding:3px 0;font-size:13px;white-space:nowrap;vertical-align:top}
+.sl{color:var(--ink-2);white-space:normal;padding-right:10px}
 .sv{font-family:"Spline Sans Mono",monospace;font-weight:600;text-align:right;
   color:var(--accent);font-variant-numeric:tabular-nums;width:52px}
+.sc .tag{display:block;width:-moz-fit-content;width:fit-content;margin:2px 0 3px}
 .tag{font-family:"Spline Sans Mono",monospace;font-size:9px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--brass);border:1px solid var(--brass);
   padding:0 4px;margin-left:6px;vertical-align:1px}
+.sc .tag{margin-left:0}
 @media (max-width:640px){
   .sectitle{margin:12px 0 -8px;padding-top:14px}
   .plist li{padding:8px 15px}
