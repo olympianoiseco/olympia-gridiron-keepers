@@ -62,7 +62,26 @@ html{scroll-behavior:smooth}
 .jump:hover{opacity:.9}
 .jump:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
 .jump .dn{flex:0 0 auto;font-family:"Spline Sans Mono",monospace;font-size:22px;line-height:1}
-#rosters{scroll-margin-top:18px}
+/* clears the sticky tab bar */
+#rosters{scroll-margin-top:72px}
+
+/* tabs: the nav only appears once the head script has set data-tab, so with
+   JavaScript off every panel shows in order and there are no dead buttons */
+.tabs{display:none;position:sticky;top:0;z-index:10;gap:24px;overflow-x:auto;overflow-y:hidden;
+  scrollbar-width:none;margin:0 -22px;padding:0 22px;background:var(--ground);
+  box-shadow:inset 0 -1px 0 var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+html[data-tab] .tabs{display:flex}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin:0;flex:0 0 auto;
+  padding:14px 2px 11px;font-family:Bitter,Georgia,serif;font-size:16.5px;font-weight:600;
+  color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .12s}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:3px solid var(--brass);outline-offset:-3px}
+.panel{display:flex;flex-direction:column;gap:20px;scroll-margin-top:72px}
+html[data-tab] .panel{display:none}
+html[data-tab="keepers"] #keepers,html[data-tab="draft"] #draft,
+html[data-tab="scoring"] #scoring{display:flex}
 .seclede{margin:0;font-size:14.5px;color:var(--ink-2)}
 .announce{border-top-color:var(--brass)}
 .announce .sh{gap:10px;padding-top:24px}
@@ -222,6 +241,9 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   .sc:nth-child(even){border-right:0}
 
   .wrap{padding:0 13px 56px;gap:16px}
+  .tabs{margin:0 -13px;padding:0 13px;gap:20px}
+  .tab{font-size:15.5px}
+  .panel{gap:16px}
   header.mast{padding:30px 0 8px;gap:7px}
   /* rule cards stack one per row — a 2-up grid of prose reads badly on a phone */
   .rc{padding:16px 17px}
@@ -264,6 +286,12 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   .th{padding:12px 14px}
 }
 </style>
+<script>
+(function () {
+  var h = location.hash.slice(1);
+  document.documentElement.setAttribute('data-tab', h === 'draft' || h === 'scoring' ? h : 'keepers');
+})();
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -271,30 +299,18 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
   <div class="rule"></div>
   <div class="eyebrow">Looking ahead to next season</div>
   <h1>The Olympia Gridiron Co.</h1>
-  <div class="stamp"><span class="for">For the 2027 season</span><span class="upd">Updated <time datetime="2026-11-14">November 14, 2026</time> &middot; rosters as of week 10, 2026</span></div>
+  <div class="stamp"><span class="for">For the 2027 season</span><span class="upd">Updated <time datetime="2026-11-16">November 16, 2026</time> &middot; rosters as of week 10, 2026</span></div>
   
 </header>
 
+<nav class="tabs" role="tablist" aria-label="Page sections"><button type="button" class="tab" role="tab" id="tab-keepers" aria-controls="keepers" aria-selected="true">Keepers</button><button type="button" class="tab" role="tab" id="tab-draft" aria-controls="draft" aria-selected="false" tabindex="-1">Draft</button><button type="button" class="tab" role="tab" id="tab-scoring" aria-controls="scoring" aria-selected="false" tabindex="-1">Scoring Settings</button></nav>
+
+<div class="panel" id="keepers" role="tabpanel" aria-labelledby="tab-keepers">
 <section class="scoring intro announce">
   <header class="sh"><span class="new">New for 2027</span><h2>Three keepers per team in 2027</h2><p>We started with one keeper this year to learn the format. For 2027, every team can keep <b>up to three players</b> from its end-of-season roster.</p><ul><li>Every player on every roster is priced below — what he would cost you as a 2027 keeper.</li><li>Rosters are pulled from Sleeper and will keep changing until the season ends. Your keepers come from your roster as it stands at the end of 2026.</li><li>Players kept in 2026 go up in price if you keep them a second time — see “The Escalator” below.</li></ul><p>Let us (Ben or Ryan) know if you’ve got any questions.</p></header>
 </section>
 
 <a class="jump" href="#rosters">Scroll down to see your current rosters and what they will cost to keep in 2027<span class="dn" aria-hidden="true">&darr;</span></a>
-
-<section class="scoring draft">
-  <header class="sh"><h2>The 2027 Draft</h2><p>Date to be announced. Same format as 2026: 15 rounds, and you have the same pick in every round… like the NFL.</p></header>
-  <div class="rgrid"><div class="rc"><h3>Draft order</h3><p>The inverse of the 2026 final standings. Consolation bracket teams are ranked by their regular season records. We’ll post the order here once the season is over.</p></div><div class="rc"><h3>New Trade Opportunities</h3><p>You can also now trade players for <b>draft picks</b> up to three years in advance! Stay tuned for more info.</p></div></div>
-</section>
-
-<section class="scoring">
-  <header class="sh"><h2>2026 scoring settings</h2><p>Half PPR.</p><p>Notable additions :</p><ul><li>+1 bonus for rushing and receiving first downs</li><li>+1 for forcing a fumble, and additional +1 for recovery it.</li><li>+1 bonus for D/ST 3 and out</li><li>+1 bonus for D/ST 4th down stop.</li></ul></header>
-  <div class="sgrid"><div class="sc"><h4>Passing</h4><table><tbody><tr class=""><td class="sl">Pass yards</td><td class="sv">+0.04</td></tr><tr class=""><td class="sl">Pass TD</td><td class="sv">+4</td></tr><tr class=""><td class="sl">Interception</td><td class="sv">-2</td></tr><tr class=""><td class="sl">2-pt pass</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Rushing</h4><table><tbody><tr class=""><td class="sl">Rush yards</td><td class="sv">+0.1</td></tr><tr class=""><td class="sl">Rush TD</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Rush first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr class=""><td class="sl">2-pt rush</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Receiving</h4><table><tbody><tr class=""><td class="sl">Reception</td><td class="sv">+0.5</td></tr><tr class=""><td class="sl">Rec yards</td><td class="sv">+0.1</td></tr><tr class=""><td class="sl">Rec TD</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Rec first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr class=""><td class="sl">2-pt rec</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Offense fumbles</h4><table><tbody><tr class=""><td class="sl">Fumble <span class="tag">new</span></td><td class="sv">-1</td></tr><tr class=""><td class="sl">Fumble lost</td><td class="sv">-1</td></tr><tr class=""><td class="sl">Fumble rec. TD</td><td class="sv">+6</td></tr></tbody></table></div><div class="sc"><h4>Kicking</h4><table><tbody><tr class=""><td class="sl">Extra point</td><td class="sv">+1</td></tr><tr class=""><td class="sl">FG 0-19</td><td class="sv">+3</td></tr><tr class=""><td class="sl">FG 20-29</td><td class="sv">+3</td></tr><tr class=""><td class="sl">FG 30-39</td><td class="sv">+3</td></tr><tr class=""><td class="sl">FG 40-49</td><td class="sv">+4</td></tr><tr class=""><td class="sl">FG 50-59</td><td class="sv">+5</td></tr><tr class=""><td class="sl">FG 60+</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Missed FG</td><td class="sv">-1</td></tr></tbody></table></div><div class="sc"><h4>Defense</h4><table><tbody><tr class=""><td class="sl">Sack</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Interception</td><td class="sv">+2</td></tr><tr class=""><td class="sl">Forced fumble</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Safety</td><td class="sv">+2</td></tr><tr class=""><td class="sl">Defensive TD</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Blocked kick</td><td class="sv">+1</td></tr><tr class=""><td class="sl">3-and-out</td><td class="sv">+1</td></tr><tr class=""><td class="sl">4th down stop</td><td class="sv">+1</td></tr><tr class=""><td class="sl">2-pt return</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Defense / special teams</h4><table><tbody><tr class=""><td class="sl">Touchdown</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Forced fumble</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr></tbody></table></div><div class="sc"><h4>Points allowed</h4><table><tbody><tr class=""><td class="sl">0</td><td class="sv">+5</td></tr><tr class=""><td class="sl">1-6</td><td class="sv">+4</td></tr><tr class=""><td class="sl">7-13</td><td class="sv">+3</td></tr><tr class=""><td class="sl">14-20</td><td class="sv">+1</td></tr><tr class=""><td class="sl">21-27</td><td class="sv">+0</td></tr><tr class=""><td class="sl">28-34</td><td class="sv">-1</td></tr><tr class=""><td class="sl">35+</td><td class="sv">-3</td></tr></tbody></table></div><div class="sc"><h4>Yards allowed</h4><table><tbody><tr class=""><td class="sl">0-99</td><td class="sv">+5</td></tr><tr class=""><td class="sl">100-199</td><td class="sv">+3</td></tr><tr class=""><td class="sl">200-299</td><td class="sv">+2</td></tr><tr class=""><td class="sl">300-349</td><td class="sv">+0</td></tr><tr class=""><td class="sl">350-399</td><td class="sv">-1</td></tr><tr class=""><td class="sl">400-449</td><td class="sv">-3</td></tr><tr class=""><td class="sl">450-499</td><td class="sv">-5</td></tr><tr class=""><td class="sl">500-549</td><td class="sv">-6</td></tr><tr class=""><td class="sl">550+</td><td class="sv">-7</td></tr></tbody></table></div></div>
-</section>
-
-<section class="scoring roster">
-  <header class="sh"><h2>Starting lineup</h2><p>Nine starters and six bench spots, plus one IR. FLEX takes a RB, WR, or TE. Same starting lineup as we ran on ESPN — the punter and head-coach slots have no Sleeper equivalent, so those became bench spots instead.</p></header>
-  <ul class="plist"><li class=""><span class="pname">QB</span></li><li class=""><span class="pname">RB</span><span class="mult">&times;2</span></li><li class=""><span class="pname">WR</span><span class="mult">&times;2</span></li><li class=""><span class="pname">TE</span></li><li class=""><span class="pname">FLEX</span></li><li class=""><span class="pname">K</span></li><li class=""><span class="pname">D/ST</span></li><li class="bench"><span class="pname">Bench</span><span class="mult">&times;6</span></li><li class="bench"><span class="pname">IR</span></li></ul><p class="psum">9 starters &middot; 6 bench &middot; 1 IR &middot; 15 roster spots in all</p><div class="rgrid"><div class="rc"><h3>Injured Reserve (IR) slot</h3><p>Each team gets one IR spot, so a player who lands on NFL injured reserve can be stashed instead of dropped. It only accepts a true IR or PUP designation — a week-to-week <em>Out</em> or <em>Doubtful</em> tag won't fit. This allows you to keep an injured player for next year, if you like.</p></div></div>
-</section>
 
 <h2 class="sectitle">2027 Keeper Rules and Rosters</h2>
 <section class="rules">
@@ -375,6 +391,26 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
     <thead><tr><th>2026 draft</th><th>2027 cost</th><th>Player</th><th>Pos</th><th>NFL</th><th>Acq</th></tr></thead>
     <tbody><tr class="inel"><td class="dp">R1.01</td><td class="cost none">not keepable</td><td class="pn">Justin Jefferson<span class="why">kept at R1 in 2026 — the escalator passes R1, so he goes back into the draft</span></td><td class="pos">WR</td><td class="pro">MIN</td><td class="acq">Keeper</td></tr><tr><td class="dp">R2.01</td><td class="cost">R2</td><td class="pn">Derrick Henry</td><td class="pos">RB</td><td class="pro">BAL</td><td class="acq">Draft</td></tr><tr><td class="dp">R3.01</td><td class="cost">R3</td><td class="pn">Drake London</td><td class="pos">WR</td><td class="pro">ATL</td><td class="acq">Draft</td></tr><tr><td class="dp">R4.01</td><td class="cost">R4</td><td class="pn">Josh Jacobs</td><td class="pos">RB</td><td class="pro">GB</td><td class="acq">Draft</td></tr><tr><td class="dp">R5.01</td><td class="cost">R5</td><td class="pn">Garrett Wilson</td><td class="pos">WR</td><td class="pro">NYJ</td><td class="acq">Draft</td></tr><tr><td class="dp">R7.01</td><td class="cost">R7</td><td class="pn">George Kittle</td><td class="pos">TE</td><td class="pro">SF</td><td class="acq">Draft</td></tr><tr><td class="dp">R8.01</td><td class="cost">R8</td><td class="pn">Rico Dowdle</td><td class="pos">RB</td><td class="pro">PIT</td><td class="acq">Draft</td></tr><tr><td class="dp">R9.01</td><td class="cost">R9</td><td class="pn">Chuba Hubbard</td><td class="pos">RB</td><td class="pro">CAR</td><td class="acq">Draft</td></tr><tr><td class="dp">R10.01</td><td class="cost">R10</td><td class="pn">Houston Texans</td><td class="pos">DEF</td><td class="pro">HOU</td><td class="acq">Draft</td></tr><tr><td class="dp">R11.01</td><td class="cost">R11</td><td class="pn">Brandon Aubrey</td><td class="pos">K</td><td class="pro">DAL</td><td class="acq">Draft</td></tr><tr><td class="dp">R13.01</td><td class="cost">R13</td><td class="pn">Jordan Love</td><td class="pos">QB</td><td class="pro">GB</td><td class="acq">Draft</td></tr><tr><td class="dp">R14.01</td><td class="cost">R14</td><td class="pn">Matthew Golden</td><td class="pos">WR</td><td class="pro">GB</td><td class="acq">Draft</td></tr><tr><td class="dp">R15.01</td><td class="cost">R15</td><td class="pn">Josh Downs</td><td class="pos">WR</td><td class="pro">KC</td><td class="acq">Draft</td></tr><tr><td class="dp">—</td><td class="cost">R15 <span class="undr">undrafted</span></td><td class="pn">Brenton Strange</td><td class="pos">TE</td><td class="pro">JAX</td><td class="acq">Free agent</td></tr><tr><td class="dp">—</td><td class="cost">R15 <span class="undr">undrafted</span></td><td class="pn">Jacksonville Jaguars</td><td class="pos">DEF</td><td class="pro">JAX</td><td class="acq">Free agent</td></tr></tbody></table></div>
 </details>
+</div>
+
+<div class="panel" id="draft" role="tabpanel" aria-labelledby="tab-draft">
+<section class="scoring draft">
+  <header class="sh"><h2>The 2027 Draft</h2><p>Date to be announced. Same format as 2026: 15 rounds, and you have the same pick in every round… like the NFL.</p></header>
+  <div class="rgrid"><div class="rc"><h3>Draft order</h3><p>The inverse of the 2026 final standings. Consolation bracket teams are ranked by their regular season records. We’ll post the order here once the season is over.</p></div><div class="rc"><h3>New Trade Opportunities</h3><p>You can also now trade players for <b>draft picks</b> up to three years in advance! Stay tuned for more info.</p></div></div>
+</section>
+</div>
+
+<div class="panel" id="scoring" role="tabpanel" aria-labelledby="tab-scoring">
+<section class="scoring">
+  <header class="sh"><h2>2026 scoring settings</h2><p>Half PPR.</p><p>Notable additions :</p><ul><li>+1 bonus for rushing and receiving first downs</li><li>+1 for forcing a fumble, and additional +1 for recovery it.</li><li>+1 bonus for D/ST 3 and out</li><li>+1 bonus for D/ST 4th down stop.</li></ul></header>
+  <div class="sgrid"><div class="sc"><h4>Passing</h4><table><tbody><tr class=""><td class="sl">Pass yards</td><td class="sv">+0.04</td></tr><tr class=""><td class="sl">Pass TD</td><td class="sv">+4</td></tr><tr class=""><td class="sl">Interception</td><td class="sv">-2</td></tr><tr class=""><td class="sl">2-pt pass</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Rushing</h4><table><tbody><tr class=""><td class="sl">Rush yards</td><td class="sv">+0.1</td></tr><tr class=""><td class="sl">Rush TD</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Rush first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr class=""><td class="sl">2-pt rush</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Receiving</h4><table><tbody><tr class=""><td class="sl">Reception</td><td class="sv">+0.5</td></tr><tr class=""><td class="sl">Rec yards</td><td class="sv">+0.1</td></tr><tr class=""><td class="sl">Rec TD</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Rec first down <span class="tag">new</span></td><td class="sv">+1</td></tr><tr class=""><td class="sl">2-pt rec</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Offense fumbles</h4><table><tbody><tr class=""><td class="sl">Fumble <span class="tag">new</span></td><td class="sv">-1</td></tr><tr class=""><td class="sl">Fumble lost</td><td class="sv">-1</td></tr><tr class=""><td class="sl">Fumble rec. TD</td><td class="sv">+6</td></tr></tbody></table></div><div class="sc"><h4>Kicking</h4><table><tbody><tr class=""><td class="sl">Extra point</td><td class="sv">+1</td></tr><tr class=""><td class="sl">FG 0-19</td><td class="sv">+3</td></tr><tr class=""><td class="sl">FG 20-29</td><td class="sv">+3</td></tr><tr class=""><td class="sl">FG 30-39</td><td class="sv">+3</td></tr><tr class=""><td class="sl">FG 40-49</td><td class="sv">+4</td></tr><tr class=""><td class="sl">FG 50-59</td><td class="sv">+5</td></tr><tr class=""><td class="sl">FG 60+</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Missed FG</td><td class="sv">-1</td></tr></tbody></table></div><div class="sc"><h4>Defense</h4><table><tbody><tr class=""><td class="sl">Sack</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Interception</td><td class="sv">+2</td></tr><tr class=""><td class="sl">Forced fumble</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Safety</td><td class="sv">+2</td></tr><tr class=""><td class="sl">Defensive TD</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Blocked kick</td><td class="sv">+1</td></tr><tr class=""><td class="sl">3-and-out</td><td class="sv">+1</td></tr><tr class=""><td class="sl">4th down stop</td><td class="sv">+1</td></tr><tr class=""><td class="sl">2-pt return</td><td class="sv">+2</td></tr></tbody></table></div><div class="sc"><h4>Defense / special teams</h4><table><tbody><tr class=""><td class="sl">Touchdown</td><td class="sv">+6</td></tr><tr class=""><td class="sl">Forced fumble</td><td class="sv">+1</td></tr><tr class=""><td class="sl">Fumble recovered</td><td class="sv">+1</td></tr></tbody></table></div><div class="sc"><h4>Points allowed</h4><table><tbody><tr class=""><td class="sl">0</td><td class="sv">+5</td></tr><tr class=""><td class="sl">1-6</td><td class="sv">+4</td></tr><tr class=""><td class="sl">7-13</td><td class="sv">+3</td></tr><tr class=""><td class="sl">14-20</td><td class="sv">+1</td></tr><tr class=""><td class="sl">21-27</td><td class="sv">+0</td></tr><tr class=""><td class="sl">28-34</td><td class="sv">-1</td></tr><tr class=""><td class="sl">35+</td><td class="sv">-3</td></tr></tbody></table></div><div class="sc"><h4>Yards allowed</h4><table><tbody><tr class=""><td class="sl">0-99</td><td class="sv">+5</td></tr><tr class=""><td class="sl">100-199</td><td class="sv">+3</td></tr><tr class=""><td class="sl">200-299</td><td class="sv">+2</td></tr><tr class=""><td class="sl">300-349</td><td class="sv">+0</td></tr><tr class=""><td class="sl">350-399</td><td class="sv">-1</td></tr><tr class=""><td class="sl">400-449</td><td class="sv">-3</td></tr><tr class=""><td class="sl">450-499</td><td class="sv">-5</td></tr><tr class=""><td class="sl">500-549</td><td class="sv">-6</td></tr><tr class=""><td class="sl">550+</td><td class="sv">-7</td></tr></tbody></table></div></div>
+</section>
+
+<section class="scoring roster">
+  <header class="sh"><h2>Starting lineup</h2><p>Nine starters and six bench spots, plus one IR. FLEX takes a RB, WR, or TE. Same starting lineup as we ran on ESPN — the punter and head-coach slots have no Sleeper equivalent, so those became bench spots instead.</p></header>
+  <ul class="plist"><li class=""><span class="pname">QB</span></li><li class=""><span class="pname">RB</span><span class="mult">&times;2</span></li><li class=""><span class="pname">WR</span><span class="mult">&times;2</span></li><li class=""><span class="pname">TE</span></li><li class=""><span class="pname">FLEX</span></li><li class=""><span class="pname">K</span></li><li class=""><span class="pname">D/ST</span></li><li class="bench"><span class="pname">Bench</span><span class="mult">&times;6</span></li><li class="bench"><span class="pname">IR</span></li></ul><p class="psum">9 starters &middot; 6 bench &middot; 1 IR &middot; 15 roster spots in all</p><div class="rgrid"><div class="rc"><h3>Injured Reserve (IR) slot</h3><p>Each team gets one IR spot, so a player who lands on NFL injured reserve can be stashed instead of dropped. It only accepts a true IR or PUP designation — a week-to-week <em>Out</em> or <em>Doubtful</em> tag won't fit. This allows you to keep an injured player for next year, if you like.</p></div></div>
+</section>
+</div>
 
 
 </div>
@@ -395,6 +431,58 @@ footer{border-top:1px solid var(--line);padding-top:18px;margin-top:14px;
       save();
     });
   });
+})();
+</script>
+<script>
+(function () {
+  var root = document.documentElement, DEFAULT = 'keepers';
+  var nav = document.querySelector('.tabs');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role=tab]'));
+  if (!tabs.length) { return; }
+  function panelFor(h) {
+    var el = h && document.getElementById(h);
+    var p = el && el.closest('[role=tabpanel]');
+    return p ? p.id : DEFAULT;
+  }
+  function show(id) {
+    root.setAttribute('data-tab', id);
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('aria-controls') === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+  }
+  function select(t) {
+    var id = t.getAttribute('aria-controls');
+    show(id);
+    history.replaceState(null, '', id === DEFAULT ? location.pathname + location.search : '#' + id);
+    // switching tabs from far down the page starts the new tab at its top
+    var top = document.getElementById(id).getBoundingClientRect().top + window.scrollY
+              - nav.offsetHeight - 12;
+    // instant, not smooth: the content just changed, so there is nothing to watch go by
+    if (window.scrollY > top) { window.scrollTo({top: top, behavior: 'instant'}); }
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t); });
+    t.addEventListener('keydown', function (e) {
+      var n = tabs.length;
+      var j = {ArrowRight: (i + 1) % n, ArrowLeft: (i - 1 + n) % n, Home: 0, End: n - 1}[e.key];
+      if (j === undefined) { return; }
+      e.preventDefault();
+      tabs[j].focus();
+      select(tabs[j]);
+    });
+  });
+  // a link to something on another tab (#team-3 from #draft) opens that tab first
+  window.addEventListener('hashchange', function () {
+    var h = location.hash.slice(1), was = root.getAttribute('data-tab');
+    show(panelFor(h));
+    var el = h && document.getElementById(h);
+    if (el && was !== root.getAttribute('data-tab') && el.getAttribute('role') !== 'tabpanel') {
+      el.scrollIntoView({block: 'start', behavior: 'instant'});
+    }
+  });
+  show(panelFor(location.hash.slice(1)));
 })();
 </script>
 </body>
